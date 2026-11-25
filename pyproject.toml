@@ -1,0 +1,17 @@
+[project]
+name = "ai-daily-digest"
+version = "0.1.0"
+description = "Collect news from RSS, summarise and score it with an LLM, deliver a daily digest to Google Sheets and Telegram."
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# E/W: pycodestyle, F: pyflakes, I: import sorting, B: bugbear, UP: pyupgrade
+select = ["E", "W", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
