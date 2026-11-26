@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Second Sample Feed</title>
+  <id>https://example.org/</id>
+  <updated>2026-11-25T09:00:00Z</updated>
+  <entry>
+    <title>Small shops automate invoices with AI</title>
+    <link href="https://example.com/articles/ai-invoices"/>
+    <id>https://example.com/articles/ai-invoices</id>
+    <updated>2026-11-25T09:00:00Z</updated>
+    <summary>The same story as in the first feed (duplicate link).</summary>
+  </entry>
+  <entry>
+    <title>Startups adopt AI agents for customer support</title>
+    <link href="https://example.org/agents-support"/>
+    <id>https://example.org/agents-support</id>
+    <updated>2026-11-25T07:15:00Z</updated>
+    <summary>Support teams use agents to answer common questions.</summary>
+  </entry>
+</feed>

@@ -1,0 +1,22 @@
+# Settings for the daily digest. Edit this file to change sources or topic -
+# no code changes needed.
+
+# What the reader cares about. The LLM scores every article against this topic.
+topic: "AI tools and automation for small businesses"
+
+# How many articles to read from each feed (newest first).
+limit_per_feed: 10
+
+# How many top-scored articles to send to Telegram.
+top_n: 5
+
+# RSS or Atom feeds to read. "name" is shown in the digest, "url" is the feed address.
+feeds:
+  - name: Hacker News
+    url: https://hnrss.org/frontpage
+  - name: TechCrunch AI
+    url: https://techcrunch.com/category/artificial-intelligence/feed/
+  - name: The Verge AI
+    url: https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+  - name: VentureBeat AI
+    url: https://venturebeat.com/category/ai/feed/

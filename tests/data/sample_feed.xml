@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Sample Tech News</title>
+    <link>https://example.com</link>
+    <description>A small local feed used by the tests.</description>
+    <item>
+      <title>New open-source LLM runs on a laptop</title>
+      <link>https://example.com/articles/local-llm</link>
+      <description>&lt;p&gt;A new model &lt;b&gt;fits&lt;/b&gt; in 8 GB of RAM &amp;amp; runs offline.&lt;/p&gt;</description>
+      <pubDate>Mon, 23 Nov 2026 08:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Small shops automate invoices with AI</title>
+      <link>https://example.com/articles/ai-invoices</link>
+      <description>Three case studies of small businesses saving hours every week.</description>
+      <pubDate>Tue, 24 Nov 2026 10:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>An entry without a link is skipped</title>
+      <description>This item has no link, so the collector should ignore it.</description>
+    </item>
+    <item>
+      <title>Chip makers report record quarter</title>
+      <link>https://example.com/articles/chips</link>
+    </item>
+  </channel>
+</rss>
