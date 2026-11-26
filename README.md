@@ -30,13 +30,33 @@ ai-daily-digest/
 ├── main.py                     # runs the whole pipeline (coming soon)
 ├── src/
 │   ├── llm.py                  # ask_llm(): the only place that talks to Gemini
-│   ├── collect.py              # RSS collection (coming soon)
+│   ├── collect.py              # read RSS/Atom feeds listed in config.yaml
 │   ├── analyze.py              # LLM analysis as JSON (coming soon)
 │   └── deliver.py              # Google Sheets + Telegram (coming soon)
 ├── tests/                      # pytest tests, no network or API key needed
+├── config.yaml                 # feeds, topic and digest size - edit without touching code
 ├── .github/workflows/daily.yml # daily schedule (coming soon)
 ├── requirements.txt
 └── .env.example
+```
+
+## Configuration
+
+Everything a client usually wants to change lives in `config.yaml`:
+
+```yaml
+topic: "AI tools and automation for small businesses"
+limit_per_feed: 10   # newest articles read from each feed
+top_n: 5             # articles sent to Telegram
+feeds:
+  - name: Hacker News
+    url: https://hnrss.org/frontpage
+```
+
+Check what would be collected today (no API key needed):
+
+```bash
+python -m src.collect
 ```
 
 ## Tech stack
