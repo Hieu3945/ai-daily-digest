@@ -31,7 +31,7 @@ ai-daily-digest/
 ├── src/
 │   ├── llm.py                  # ask_llm(): the only place that talks to Gemini
 │   ├── collect.py              # read RSS/Atom feeds listed in config.yaml
-│   ├── analyze.py              # LLM analysis as JSON (coming soon)
+│   ├── analyze.py              # batched LLM analysis as validated JSON
 │   └── deliver.py              # Google Sheets + Telegram (coming soon)
 ├── tests/                      # pytest tests, no network or API key needed
 ├── config.yaml                 # feeds, topic and digest size - edit without touching code
@@ -59,9 +59,21 @@ Check what would be collected today (no API key needed):
 python -m src.collect
 ```
 
+Collect and analyze today's articles, then print the top stories (needs `GEMINI_API_KEY`
+in `.env`):
+
+```bash
+python -m src.analyze
+```
+
+The analysis step is built to survive bad days: each batch of 10 articles is one LLM call,
+every JSON answer is validated (unknown ids, empty summaries and scores outside 1-5 are
+dropped), failed calls are retried with a growing delay, and a batch that still fails is
+skipped instead of stopping the whole run.
+
 ## Tech stack
 
-Python 3.11+, Gemini API (`google-genai`), feedparser, gspread, Telegram Bot API,
+Python 3.10+, Gemini API (`google-genai`), feedparser, gspread, Telegram Bot API,
 GitHub Actions, pytest, ruff
 
 ## Run locally
