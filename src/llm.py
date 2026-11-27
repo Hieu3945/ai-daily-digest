@@ -18,6 +18,10 @@ load_dotenv()
 DEFAULT_MODEL = "gemini-3.1-flash-lite"
 
 
+class MissingApiKeyError(RuntimeError):
+    """GEMINI_API_KEY is not set. Retrying cannot fix this, so callers should not retry."""
+
+
 def get_model() -> str:
     """Return the model name from GEMINI_MODEL (model names change often, so keep it in env)."""
     return os.getenv("GEMINI_MODEL") or DEFAULT_MODEL
@@ -32,7 +36,9 @@ def get_client() -> genai.Client:
     """
     api_key = os.getenv("GEMINI_API_KEY")
     if not api_key:
-        raise RuntimeError("GEMINI_API_KEY is not set. Copy .env.example to .env and add your key.")
+        raise MissingApiKeyError(
+            "GEMINI_API_KEY is not set. Copy .env.example to .env and add your key."
+        )
     return genai.Client(api_key=api_key)
 
 
