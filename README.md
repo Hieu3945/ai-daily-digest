@@ -27,12 +27,12 @@ ranked digest.
 
 ```text
 ai-daily-digest/
-├── main.py                     # runs the whole pipeline (coming soon)
+├── main.py                     # runs the whole pipeline: collect -> analyze -> deliver
 ├── src/
 │   ├── llm.py                  # ask_llm(): the only place that talks to Gemini
 │   ├── collect.py              # read RSS/Atom feeds listed in config.yaml
 │   ├── analyze.py              # batched LLM analysis as validated JSON
-│   └── deliver.py              # Google Sheets + Telegram (coming soon)
+│   └── deliver.py              # Google Sheets (with de-duplication) + Telegram
 ├── tests/                      # pytest tests, no network or API key needed
 ├── config.yaml                 # feeds, topic and digest size - edit without touching code
 ├── .github/workflows/daily.yml # daily schedule (coming soon)
@@ -70,6 +70,19 @@ The analysis step is built to survive bad days: each batch of 10 articles is one
 every JSON answer is validated (unknown ids, empty summaries and scores outside 1-5 are
 dropped), failed calls are retried with a growing delay, and a batch that still fails is
 skipped instead of stopping the whole run.
+
+Run the whole pipeline. `--dry-run` collects and analyzes, then prints the Telegram
+message without saving or sending anything (needs only `GEMINI_API_KEY`):
+
+```bash
+python main.py --dry-run
+python main.py            # full run: also needs the Google Sheets and Telegram settings
+```
+
+Each full run reads the links already stored in the Google Sheet first, so old articles
+are never analyzed or sent twice. Results are saved to the sheet before the Telegram
+message is sent, and the script exits with a non-zero code on failure so a scheduled run
+shows up as failed.
 
 ## Tech stack
 
